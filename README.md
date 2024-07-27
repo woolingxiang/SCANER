@@ -43,7 +43,8 @@ head(rs$information)
 ```
 #### Create your own chromosome dictionary
 ```{r}
-# you can donwload a mapDataFrame from Ensembl, it should include the following columns: 'ENSG','GENE','CHR','PQ','START','END'
+# you can donwload a mapDataFrame from Ensembl,
+# it should include the following columns: 'ENSG','GENE','CHR','PQ','START','END'
 CpRMAP = adjust.chrpq.map(mapDataFrame)
 rs = identificationTumorCellsX(seurat_obj=seuratObj,chrpq=CpRMAP, putativeT.cor=0.5)
 ```

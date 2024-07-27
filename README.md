@@ -30,7 +30,7 @@ renv::snapshot(type='all')
 * verbose: Show the detailed information of analysis. 
 
 ### Example
-
+#### Quick start
 ```{r}
 # suppose you have a Seurat object
 rs = identificationTumorCellsX(seurat_obj=seuratObj,chrpq=SCANER::CpRMAP_GRCh38, putativeT.cor=0.5)
@@ -38,3 +38,10 @@ rs = identificationTumorCellsX(seurat_obj=seuratObj,chrpq=SCANER::CpRMAP_GRCh38,
 # suppose you have an expression profile and corresponding cluster information
 rs = identificationTumorCellsX(mat.f=expressionMatrix,cluster.tag=clusterVector,chrpq=SCANER::CpRMAP_GRCh38, putativeT.cor=0.5)
 ```
+#### Create your own chromosome dictionary
+```{r}
+# you can donwload a mapDataFrame from Ensembl, it should include the following columns: 'ENSG','GENE','CHR','PQ','START','END'
+CpRMAP = adjust.chrpq.map(mapDataFrame)
+rs = identificationTumorCellsX(seurat_obj=seuratObj,chrpq=CpRMAP, putativeT.cor=0.5)
+```
+

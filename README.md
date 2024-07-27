@@ -47,4 +47,8 @@ head(rs$information)
 CpRMAP = adjust.chrpq.map(mapDataFrame)
 rs = identificationTumorCellsX(seurat_obj=seuratObj,chrpq=CpRMAP, putativeT.cor=0.5)
 ```
+### Plot CNV
+```{r}
+CNVPlot(rs,putativeTumor=2,genomeSizeFile='hg38',outPDF='./scanerCNV.pdf')
+```
 

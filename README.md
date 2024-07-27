@@ -37,6 +37,9 @@ rs = identificationTumorCellsX(seurat_obj=seuratObj,chrpq=SCANER::CpRMAP_GRCh38,
 
 # suppose you have an expression profile and corresponding cluster information
 rs = identificationTumorCellsX(mat.f=expressionMatrix,cluster.tag=clusterVector,chrpq=SCANER::CpRMAP_GRCh38, putativeT.cor=0.5)
+
+# see the results
+head(rs$information)
 ```
 #### Create your own chromosome dictionary
 ```{r}

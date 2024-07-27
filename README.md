@@ -3,12 +3,15 @@ We developed a marker-free approach, Seed-Cluster based Approach for NEoplastic 
 
 ### Installation
 #### Option One:
+```{r}
 devtools::install_github('woolingxiang/SCANER')
-
+```
 #### Option Two:
+```{r}
 renv::init('.')
 renv::install('woolingxiang/SCANER')
 renv::snapshot(type='all')
+```
 
 ### Usage
 #### main function: identificationTumorCellsX

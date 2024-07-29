@@ -54,6 +54,8 @@ renv::snapshot(type='all')
 ### Example
 #### Quick start
 ```{r}
+library(SCANER)
+
 # suppose you have a Seurat object
 rs = identificationTumorCellsX(seurat_obj=seuratObj,cluster.tag='seurat_clusters',chrpq=SCANER::CpRMAP_GRCh38, putativeT.cor=0.5)
 
@@ -72,6 +74,8 @@ rs = identificationTumorCellsX(seurat_obj=seuratObj,cluster.tag='seurat_clusters
 ```
 #### Plot CNV
 ```{r}
+library(ComplexHeatmap)
+
 CNVPlot(rs,putativeTumor=2,genomeSizeFile='hg38',outPDF='./scanerCNV.pdf')
 ```
 

@@ -1,5 +1,5 @@
 ### Description
-We developed a marker-free approach, Seed-Cluster based Approach for NEoplastic cells Recognition (SCANER), to identify malignant cells on the basis of genomic instability induced violent gene expression variations. By examining different cancer types, we demonstrated that the SCANER showed remarkable robustness to extensive dropout events (0.1~0.25), and capable of precisely distinguishing tumor from non-tumor cells in diverse tumor tissues sequenced by Smart-seq2 or 10X Genomics.
+We developed a marker-free approach, Seed-Cluster based Approach for NEoplastic cells Recognition (SCANER), to identify malignant cells on the basis of genomic instability induced violent gene expression variations. By examining different cancer types, we demonstrated that the SCANER showed remarkable robustness to extensive dropout events (0.1~0.25), and capable of precisely distinguishing tumor from non-tumor cells in diverse tumor tissues sequenced by Smart-seq2 or 10X Genomics. Please visit [Tutorial-for-Using-SCANER](https://github.com/woolingxiang/SCANER/wiki/Tutorial-for-Using-SCANER) for a detailed tutorial. 
 ![WX20240729](https://github.com/user-attachments/assets/9b3a9623-5a58-43e7-bcae-497360ff6b4c)
 
 

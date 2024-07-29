@@ -29,7 +29,7 @@ renv::snapshot(type='all')
 
 * **chrpq**: A data frame containing gene information on chromosomes, obtainable via SCANER::CpRMAP_GRCh38 or SCANER::CpRMAP_GRCh37.
 
-* **GE.frac**: The cutoff for the proportion of expressed genes. Default is 0.5.
+* **GE.frac**: The cutoff for the proportion of expressed genes. Default is 0.05.
 
 * **smooth.ceiling**: This smooths the expression profile to avoid the influence of abnormal expression on CNV inference. Default is 1.0.
 

@@ -51,7 +51,7 @@ renv::snapshot(type='all')
 #### Quick start
 ```{r}
 # suppose you have a Seurat object
-rs = identificationTumorCellsX(seurat_obj=seuratObj,chrpq=SCANER::CpRMAP_GRCh38, putativeT.cor=0.5)
+rs = identificationTumorCellsX(seurat_obj=seuratObj,cluster.tag='seurat_clusters',chrpq=SCANER::CpRMAP_GRCh38, putativeT.cor=0.5)
 
 # suppose you have an expression profile and corresponding cluster information
 rs = identificationTumorCellsX(mat.f=expressionMatrix,cluster.tag=clusterVector,chrpq=SCANER::CpRMAP_GRCh38,putativeT.cor=0.5)

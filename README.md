@@ -54,7 +54,7 @@ renv::snapshot(type='all')
 rs = identificationTumorCellsX(seurat_obj=seuratObj,chrpq=SCANER::CpRMAP_GRCh38, putativeT.cor=0.5)
 
 # suppose you have an expression profile and corresponding cluster information
-rs = identificationTumorCellsX(mat.f=expressionMatrix,cluster.tag=clusterVector,chrpq=SCANER::CpRMAP_GRCh38, putativeT.cor=0.5)
+rs = identificationTumorCellsX(mat.f=expressionMatrix,cluster.tag=clusterVector,chrpq=SCANER::CpRMAP_GRCh38,putativeT.cor=0.5)
 
 # see the results
 head(rs$information)
@@ -64,7 +64,7 @@ head(rs$information)
 # you can donwload a mapDataFrame from Ensembl,
 # it should include the following columns: 'ENSG','GENE','CHR','PQ','START','END'
 CpRMAP = adjust.chrpq.map(mapDataFrame)
-rs = identificationTumorCellsX(seurat_obj=seuratObj,chrpq=CpRMAP, putativeT.cor=0.5)
+rs = identificationTumorCellsX(seurat_obj=seuratObj,cluster.tag='seurat_clusters',chrpq=CpRMAP,putativeT.cor=0.5)
 ```
 #### Plot CNV
 ```{r}

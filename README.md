@@ -8,14 +8,14 @@ We developed a marker-free approach, Seed-Cluster based Approach for NEoplastic 
 ```{r}
 install.packages('devtools')
 devtools::install_github('woolingxiang/SCANER')
-install.packages('CompleHeatmap')
+install.packages('ComplexHeatmap')
 ```
 #### Option Two:
 ```{r}
 install.packages('renv')
 renv::init('.')
 renv::install('woolingxiang/SCANER')
-renv::install('CompleHeatmap')
+renv::install('ComplexHeatmap')
 renv::snapshot(type='all')
 ```
 

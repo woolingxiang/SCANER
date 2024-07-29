@@ -25,7 +25,7 @@ renv::snapshot(type='all')
 #### main function: identificationTumorCellsX
 #### parameters:
 
-* **mat.f**: An expression profile derived from scRNA-seq data.
+* **mat.f**: An expression profile derived from scRNA-seq data. When the function uses the *seurat_obj* parameter, this parameter will not be activated.
 
 * **cluster.tag**: A vector containing tags for each cluster, e.g., c(1,1,1,2,3,3,3,2,2,2,4,5,4,4,4,4,5,5,5,5,...). These tags should correspond to the order of cells in the expression profile. Alternatively, when the function is set to use *seurat_obj*, this parameter only accepts a single string which should be the name of a column in the meta.data of the Seurat object, such as *seurat_clusters*.
 

@@ -106,18 +106,25 @@ adjust.chrpqb.map <- function(map){
 }
 
 # main function, cnv preprocessing
-cnv.preproc <- function(expr,map,model,...){
+cnv.preproc <- function(expr,map,model,cores=4,windows=100,win.frac=NULL,mtd=mean,...){
 	cm.genes = intersect(rownames(expr),rownames(map))
 	cm.map = map[cm.genes,]
 	cm.map$CHR <- as.vector(cm.map$CHR)
 	cm.map = cm.map[order(cm.map$CHR,cm.map$START,cm.map$END),]
 	cm.expr = expr[rownames(cm.map),]
 	barcode = paste(cm.map$CHR,'_',sep='')
-	rs.md = apply(cm.expr,2,function(s,b){
+
+	library(parallel)
+	mc = makeCluster(cores)
+	clusterExport(mc,c("cm.expr","model","windows","barcode","win.frac","mtd"),
+	              envir=environment())
+	rs.md = parApply(mc,cm.expr,2,function(s,b){
 		unlist(tapply(s,b,function(c){
-			model(c,...)$v
+			model(c,windows=windows,win.frac=win.frac,mtd=mtd)$v
 		}))
 	},b=barcode)
+	stopCluster(mc)
+	
 	chrs = as.factor(gsub('_.*$','',rownames(rs.md)))		
 	return(list(cnv=rs.md,chr=chrs,map=cm.map))
 }

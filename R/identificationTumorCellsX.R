@@ -3,7 +3,7 @@
 
 identificationTumorCellsX <- function(mat.f=NULL,cluster.tag=NULL,seurat_obj=NULL,
                                       chrpq=NULL,GE.frac=0.05,smooth.ceiling=1,
-                                      windows=100,cluster.NUM=30,
+                                      windows=100,cluster.NUM=30,cores=4,
                                       putativeT.frac=0.6,putativeT.cor=NULL,
                                       inferCNVBy='putativeTumor2',verbose=T){
   
@@ -20,6 +20,7 @@ identificationTumorCellsX <- function(mat.f=NULL,cluster.tag=NULL,seurat_obj=NUL
   
   # handle with Seurat Object, require Seurat version < 5
   if(!is.null(seurat_obj)){
+    cat('[INFO]',date(),'Detect as a seurat object\n')
     mat.f = as.matrix(seurat_obj[['RNA']]@data)
     if(length(cluster.tag)==1 & length(which(colnames(seurat_obj@meta.data)==cluster.tag))==1){
       cluster.tag = seurat_obj@meta.data[[cluster.tag]]
@@ -34,20 +35,23 @@ identificationTumorCellsX <- function(mat.f=NULL,cluster.tag=NULL,seurat_obj=NUL
   }
   
   # create object for subsequent analysis
+  cat('[INFO]',date(),'create a standard object for analysis\n')
   info.f = data.frame(Cluster=cluster.tag,row.names=names(cluster.tag))
   info.f = as.data.frame(as.matrix(info.f)[colnames(mat.f),])
   colnames(info.f) = 'Cluster'
   
   # two criteria should be kept in mind
+  cat('[INFO]',date(),'criteria evaluating ...\n')
   stat2 <- apply(mat.f,1,function(x){length(which(x>0))/length(x)})		# prop. of cells expressing the indicated gene
   tst.expr.f <- mat.f[which(stat2>GE.frac),]					# remove the genes rarely expressed in cells
   c1.detectedFrac = apply(tst.expr.f,2,function(x){length(which(x>0))/length(x)})	# prop. of genes detected in the indicated cell
   dat.f <- apply(tst.expr.f,2,function(x,m){x[which(x>m)]=m;x},m=smooth.ceiling)	# smooth profile
-  cp  = cnv.preproc(dat.f,chrpq,cp.default.model,windows=windows,mtd=mean)	# calculate raw copy number
+  cp  = cnv.preproc(dat.f,chrpq,cp.default.model,windows=windows,mtd=mean,cores=cores)	# calculate raw copy number
   c2.cnvMad = apply(cp$cnv,2,mad)							# instability of copy number
   info.f$putativeSeed = factor(ifelse(c1.detectedFrac>mean(c1.detectedFrac) & c2.cnvMad>mean(c2.cnvMad),'seed','non-seed'),levels=c('non-seed','seed'))
   
   # select the candidated cluster as tumor seeds
+  cat('[INFO]',date(),'choose tumor seeds\n')
   stat = table(info.f$Cluster,info.f$putativeSeed)
   stat.frac = stat[,2]/rowSums(stat)			# prop. of cells marked as tumor-seed in each cluster
   tmp = stat.frac[which(rowSums(stat)>cluster.NUM)]	# remove the clusters consisting of few cells
@@ -58,6 +62,7 @@ identificationTumorCellsX <- function(mat.f=NULL,cluster.tag=NULL,seurat_obj=NUL
   },r=seed.cnv)
   
   # generalized seed
+  cat('[INFO]',date(),'generalize tumor seeds ...\n')
   if(is.null(putativeT.cor)){
     dis.seed = pool[which(info.f$Cluster %in% seed)]				# get all correlation coeff. in cluster-seed
     exclude.frac = ifelse(putativeT.frac>0.5,1-putativeT.frac,0.5)			# in common, putativeT.frac should be greater than 0.5

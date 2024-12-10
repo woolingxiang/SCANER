@@ -6,16 +6,19 @@ We developed a marker-free approach, Seed-Cluster based Approach for NEoplastic 
 ### Installation
 #### Option One:
 ```{r}
-install.packages('devtools')
+install.packages('devtools') # version ≥ 2.4.3
 devtools::install_github('woolingxiang/SCANER')
-install.packages('ComplexHeatmap')
+install.packages('BiocManager') # version ≥ 1.30.17
+BiocManager::install('ComplexHeatmap') # version ≥ 2.22.0
+install.packages('parallel') # version ≥ 4.1.2
 ```
 #### Option Two:
 ```{r}
-install.packages('renv')
+install.packages('renv') # version ≥ 1.0.5
 renv::init('.')
 renv::install('woolingxiang/SCANER')
-renv::install('ComplexHeatmap')
+renv::install('bioc::ComplexHeatmap') # version ≥ 2.22.0
+renv::install('parallel') # version ≥ 4.1.2
 renv::snapshot(type='all')
 ```
 

@@ -51,6 +51,8 @@ renv::snapshot(type='all')
 
 * **inferCNVBy**: CNV inference is based on tumor cells (putativeTumor) or tumor clusters (putativeTumor2). Default is putativeTumor2.
 
+* **cores**: The number of threads used for analysis. Default is 4. 
+
 * **verbose**: Displays detailed information about the analysis.
 
 ---

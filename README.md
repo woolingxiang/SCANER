@@ -79,6 +79,17 @@ head(rs$information)
 CpRMAP = adjust.chrpq.map(mapDataFrame)
 rs = identificationTumorCellsX(seurat_obj=seuratObj,cluster.tag='seurat_clusters',chrpq=CpRMAP,putativeT.cor=0.5)
 ```
+#### for Seurat V5 object
+```{r}
+# for V5
+# get matrix
+expressionMatrix = GetAssayData(seurat_object, assay = "RNA", layer = "data")
+# get corresponding cluster information
+clusterVector = seurat_object@meta.data$seurat_cluster
+
+# see the results
+rs = identificationTumorCellsX(mat.f=expressionMatrix,cluster.tag=clusterVector,chrpq=SCANER::CpRMAP_GRCh38,putativeT.cor=0.5)
+```
 #### Plot CNV
 ```{r}
 library(ComplexHeatmap)

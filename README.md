@@ -66,7 +66,7 @@ library(SCANER)
 rs = identificationTumorCellsX(seurat_obj=seuratObj,cluster.tag='seurat_clusters',chrpq=SCANER::CpRMAP_GRCh38, putativeT.cor=0.5)
 
 # suppose you have an expression profile and corresponding cluster information
-# make sure the expressionMatrixis normalized before input. Otherwise, you will need to adjust the "smooth.ceiling" parameter appropriately to account for the unprocessed count values. Thanks to @kkkaslikar for the helpful suggestion~ :) 
+# make sure the expressionMatrix is normalized before input. Otherwise, you will need to adjust the "smooth.ceiling" parameter appropriately to account for the unprocessed count values. —— Thanks to @kkkaslikar for the helpful suggestion~ :) 
 rs = identificationTumorCellsX(mat.f=expressionMatrix,cluster.tag=clusterVector,chrpq=SCANER::CpRMAP_GRCh38,putativeT.cor=0.5)
 
 # see the results

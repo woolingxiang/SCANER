@@ -97,3 +97,5 @@ library(ComplexHeatmap)
 CNVPlot(rs,putativeTumor=2,genomeSizeFile='hg38',outPDF='./scanerCNV.pdf')
 ```
 
+### Citation
+> Xia P, Wu W, Liu Q, Huang B, Wu M, Lin Z, Zhu M, Yu M, Qu Y, Li K, Wu L, Zhang R, Wang Q. SCANER: robust and sensitive identification of malignant cells from the scRNA-seq profiled tumor ecosystem. Brief Bioinform. 2025 Mar 4;26(2):bbaf175. doi: 10.1093/bib/bbaf175. PMID: 40253692; PMCID: PMC12009548.
